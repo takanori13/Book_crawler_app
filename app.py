@@ -2,7 +2,7 @@ import streamlit as st
 import json
 import os
 
-DATA_PATH = "data/books.json"  # ✅ disesuaikan
+DATA_PATH = "data/books.json"
 
 st.set_page_config(page_title="Book Crawler App", layout="wide")
 st.title("📚 Book Crawler Search App")
@@ -20,7 +20,7 @@ query = st.text_input("Cari judul buku:")
 
 # Filter data
 if query:
-    filtered = [item for item in data if query.lower() in item["title"].lower()]
+    filtered = [item for item in data if query.lower() in item.get("title", "").lower()]
     st.markdown(f"### Hasil: {len(filtered)} ditemukan")
 else:
     filtered = data
@@ -28,7 +28,12 @@ else:
 
 # Tampilkan hasil
 for item in filtered:
-    st.markdown(f"[📘 \"{item['title']}\"]({item['link']})")
-    st.markdown(f"💰 Harga: `{item.get('price', '-')}`")
-    st.markdown(f"📦 Stok: `{item.get('availability', '-')}`")
+    title = item.get("title", "Tanpa Judul")
+    link = item.get("link", "#")
+    price = item.get("price", "-")
+    stock = item.get("availability", "-")
+
+    st.markdown(f"[📘 \"{title}\"]({link})")
+    st.markdown(f"💰 Harga: `{price}`")
+    st.markdown(f"📦 Stok: `{stock}`")
     st.markdown("---")
