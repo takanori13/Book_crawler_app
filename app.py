@@ -3,7 +3,7 @@ import streamlit as st
 import json
 import os
 
-DATA_PATH = "data/results.json"  # perbaiki koma jadi titik
+DATA_PATH = "data/books.json"  # perbaiki koma jadi titik
 
 st.set_page_config(page_title="Web Crawler Search", layout="wide")
 st.title("🔍 Web Crawler Search App")
