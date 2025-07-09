@@ -1,9 +1,8 @@
-# app.py
 import streamlit as st
 import json
 import os
 
-DATA_PATH = "data/results.json"
+DATA_PATH = "data/books.json"  # ✅ disesuaikan
 
 st.set_page_config(page_title="Book Crawler App", layout="wide")
 st.title("📚 Book Crawler Search App")
