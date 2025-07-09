@@ -3,7 +3,7 @@ import streamlit as st
 import json
 import os
 
-DATA_PATH = "data/results.json"
+DATA_PATH = "data/results.json"  # perbaiki koma jadi titik
 
 st.set_page_config(page_title="Web Crawler Search", layout="wide")
 st.title("🔍 Web Crawler Search App")
@@ -30,7 +30,6 @@ else:
 
 # Tampilkan hasil
 for item in filtered:
-    # Tampilkan judul sebagai link yang bisa diklik
     st.markdown(f"[📘 \"{item['text']}\"]({item['url']}) – *{item['author']}*")
     st.markdown(f"`Tags:` {', '.join(item['tags'])}")
     st.markdown("---")
