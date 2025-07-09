@@ -30,6 +30,7 @@ else:
 
 # Tampilkan hasil
 for item in filtered:
-    st.markdown(f"**\"{item['text']}\"** – *{item['author']}*")
+    # Tampilkan judul sebagai link yang bisa diklik
+    st.markdown(f"[📘 \"{item['text']}\"]({item['url']}) – *{item['author']}*")
     st.markdown(f"`Tags:` {', '.join(item['tags'])}")
     st.markdown("---")
