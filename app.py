@@ -3,10 +3,10 @@ import streamlit as st
 import json
 import os
 
-DATA_PATH = "data/results.json"  # perbaiki koma jadi titik
+DATA_PATH = "data/results.json"
 
-st.set_page_config(page_title="Web Crawler Search", layout="wide")
-st.title("🔍 Web Crawler Search App")
+st.set_page_config(page_title="Book Crawler App", layout="wide")
+st.title("📚 Book Crawler Search App")
 
 # Load data
 if os.path.exists(DATA_PATH):
@@ -17,12 +17,11 @@ else:
     st.stop()
 
 # Input pencarian
-query = st.text_input("Cari kutipan atau nama penulis:", "")
+query = st.text_input("Cari judul buku:")
 
 # Filter data
 if query:
-    filtered = [item for item in data if query.lower() in item["text"].lower()
-                or query.lower() in item["author"].lower()]
+    filtered = [item for item in data if query.lower() in item["title"].lower()]
     st.markdown(f"### Hasil: {len(filtered)} ditemukan")
 else:
     filtered = data
@@ -30,6 +29,7 @@ else:
 
 # Tampilkan hasil
 for item in filtered:
-    st.markdown(f"[📘 \"{item['text']}\"]({item['url']}) – *{item['author']}*")
-    st.markdown(f"`Tags:` {', '.join(item['tags'])}")
+    st.markdown(f"[📘 \"{item['title']}\"]({item['link']})")
+    st.markdown(f"💰 Harga: `{item.get('price', '-')}`")
+    st.markdown(f"📦 Stok: `{item.get('availability', '-')}`")
     st.markdown("---")
